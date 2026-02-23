@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: makima-daemon-config
+  labels:
+    app: makima-daemon
+    app.kubernetes.io/name: makima-daemon
+    app.kubernetes.io/component: daemon
+    app.kubernetes.io/part-of: makima
+data:
+  # WebSocket URL of the Makima server (wss:// for TLS, ws:// for plain)
+  server-url: "wss://api.makima.jp"
+  # Log level (trace, debug, info, warn, error)
+  log-level: "makima=info"

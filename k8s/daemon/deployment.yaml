@@ -1,0 +1,107 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: makima-daemon
+  labels:
+    app: makima-daemon
+    app.kubernetes.io/name: makima-daemon
+    app.kubernetes.io/component: daemon
+    app.kubernetes.io/part-of: makima
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: makima-daemon
+  template:
+    metadata:
+      labels:
+        app: makima-daemon
+        app.kubernetes.io/name: makima-daemon
+        app.kubernetes.io/component: daemon
+        app.kubernetes.io/part-of: makima
+    spec:
+      terminationGracePeriodSeconds: 30
+      containers:
+        - name: makima-daemon
+          # Also available as ghcr.io/soryu-co/makima:latest
+          image: ghcr.io/soryu-co/makima-daemon:latest
+          imagePullPolicy: Always
+          resources:
+            requests:
+              memory: "512Mi"
+              cpu: "500m"
+            limits:
+              memory: "2Gi"
+              cpu: "2000m"
+          env:
+            # --- Secrets ---
+            - name: MAKIMA_API_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: makima-daemon-secrets
+                  key: api-key
+            - name: GITHUB_TOKEN
+              valueFrom:
+                secretKeyRef:
+                  name: makima-daemon-secrets
+                  key: github-token
+                  optional: true
+            - name: GH_TOKEN
+              valueFrom:
+                secretKeyRef:
+                  name: makima-daemon-secrets
+                  key: github-token
+                  optional: true
+            # --- ConfigMap ---
+            - name: MAKIMA_DAEMON_SERVER_URL
+              valueFrom:
+                configMapKeyRef:
+                  name: makima-daemon-config
+                  key: server-url
+            - name: RUST_LOG
+              valueFrom:
+                configMapKeyRef:
+                  name: makima-daemon-config
+                  key: log-level
+          volumeMounts:
+            - name: workdir
+              mountPath: /app/workdir
+            - name: data
+              mountPath: /app/data
+            - name: ssh-keys
+              mountPath: /root/.ssh
+              readOnly: true
+          # Liveness probe: check that the makima daemon process is running
+          livenessProbe:
+            exec:
+              command:
+                - /bin/sh
+                - -c
+                - pgrep -f "makima daemon" > /dev/null
+            initialDelaySeconds: 10
+            periodSeconds: 30
+            timeoutSeconds: 5
+            failureThreshold: 3
+          # Readiness probe: same check — daemon is ready when the process is alive
+          readinessProbe:
+            exec:
+              command:
+                - /bin/sh
+                - -c
+                - pgrep -f "makima daemon" > /dev/null
+            initialDelaySeconds: 5
+            periodSeconds: 10
+            timeoutSeconds: 5
+            failureThreshold: 3
+      volumes:
+        - name: workdir
+          emptyDir:
+            sizeLimit: 10Gi
+        - name: data
+          emptyDir:
+            sizeLimit: 1Gi
+        - name: ssh-keys
+          secret:
+            secretName: makima-daemon-ssh
+            optional: true
+            defaultMode: 0600
