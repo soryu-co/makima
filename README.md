@@ -1,8 +1,14 @@
-# Makima
+# makima
 
-**Distributed task orchestration for AI coding agents.**
+Makima is listening
 
-Makima coordinates work across multiple AI coding agents, enabling parallel task execution, contract-based workflows, and seamless integration with tools like Claude Code.
+[![](https://files.catbox.moe/hv4r24.png)](http://makima.jp)
+
+---
+
+Distributed task orchestration for AI coding daemons.
+
+Makima coordinates work across multiple AI coding daemons, enabling parallel task execution, contract-based workflows, and seamless integration with tools like Claude Code.
 
 ## Installation
 
@@ -48,7 +54,7 @@ Makima can run as a daemon in Kubernetes for persistent task execution. Manifest
 The daemon container image is available at:
 
 ```
-ghcr.io/soryu-co/makima-daemon:latest
+ghcr.io/soryu-co/makima:latest
 ```
 
 Apply the manifests with kustomize:
@@ -61,8 +67,8 @@ See [`k8s/daemon/README.md`](k8s/daemon/README.md) for full deployment instructi
 
 ## Documentation
 
-- [Cloudflare Edge Agent](docs/cloudflare-agent.md) — Deploy a WebSocket relay on Cloudflare Workers for edge-based task dispatch
+- [Cloudflare Edge Daemon](docs/cloudflare-agent.md) — Deploy a WebSocket relay on Cloudflare Workers for edge-based task dispatch
 
 ## License & Info
 
-Makima is developed by [soryu-co](https://github.com/soryu-co). For more information, visit the [soryu-co GitHub organization](https://github.com/soryu-co).
+Makima is developed by [soryu-co](https://github.com/soryu-co). For more information, visit [makima.jp](http://makima.jp).
