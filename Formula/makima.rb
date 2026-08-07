@@ -16,25 +16,24 @@
 class Makima < Formula
   desc "Self-hosted daemon orchestration and terminal coding harness"
   homepage "https://github.com/soryu-co/makima"
-  version "0.7.0"
+  version "0.8.1"
   license "MIT"
 
   on_macos do
     on_arm do
-      url "https://github.com/soryu-co/makima/releases/download/v0.7.0/makima-v0.7.0-macos-arm64.tar.gz"
-      sha256 "2c99a956c89049b326bb69e7242a17605945c4dbd36d150bb7b73a9653322dc9"
+      url "https://github.com/soryu-co/makima/releases/download/v0.8.1/makima-v0.8.1-macos-arm64.tar.gz"
+      sha256 "85bbc2c1a1201257ef4a86f3584fabf5a7e1121b15be537860f1421c920c9b7b"
     end
     on_intel do
-      url "https://github.com/soryu-co/makima/releases/download/v0.7.0/makima-v0.7.0-macos-x86_64.tar.gz"
-      sha256 "aa70ca77a8854982969f20e565bf333157e97988eea598c8e9a22185b398a416"
+      url "https://github.com/soryu-co/makima/releases/download/v0.8.1/makima-v0.8.1-macos-x86_64.tar.gz"
+      sha256 "f8fcebdd86c527eb60d9896f6c1763eca5f4bf7d50844efae4f4726d7c47d82d"
     end
   end
 
   on_linux do
     on_intel do
-      # Pinned to v0.6.8: no v0.7.0 build was produced for this platform.
-      url "https://github.com/soryu-co/makima/releases/download/v0.6.8/makima-v0.6.8-linux-x86_64.tar.gz"
-      sha256 "13adeeb3e74b77d9829a1f23366f3901e1ac8226ce9f993a05074f4d0f8c3507"
+      url "https://github.com/soryu-co/makima/releases/download/v0.8.1/makima-v0.8.1-linux-x86_64.tar.gz"
+      sha256 "072d3d47169e78ec2aee79bb91785c2d34842d24c029abb758a8481d767056eb"
     end
   end
 
