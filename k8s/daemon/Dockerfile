@@ -21,6 +21,10 @@ RUN apt-get update && apt-get install -y \
 # Copy workspace files
 COPY Cargo.toml Cargo.lock ./
 COPY makima ./makima
+# The CLI links the terminal crate (the TUI, the harness and its tools),
+# so the workspace member has to be in the context or the manifest for
+# `makima` cannot even be loaded.
+COPY makima-terminal ./makima-terminal
 COPY vendor ./vendor
 COPY tools/stt-client ./tools/stt-client
 
