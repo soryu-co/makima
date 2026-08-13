@@ -16,24 +16,24 @@
 class Makima < Formula
   desc "Self-hosted daemon orchestration and terminal coding harness"
   homepage "https://github.com/soryu-co/makima"
-  version "0.11.0"
+  version "0.12.0"
   license "MIT"
 
   on_macos do
     on_arm do
-      url "https://github.com/soryu-co/makima/releases/download/v0.11.0/makima-v0.11.0-macos-arm64.tar.gz"
-      sha256 "8b5dc244fcf72d76694a4bcab7b7f6a654614f005edba20a0479c35b756430ee"
+      url "https://github.com/soryu-co/makima/releases/download/v0.12.0/makima-v0.12.0-macos-arm64.tar.gz"
+      sha256 "28ca75cceebca8d21025bca8f70e31ad644968088b215a8af45befc56d20f4a0"
     end
     on_intel do
-      url "https://github.com/soryu-co/makima/releases/download/v0.11.0/makima-v0.11.0-macos-x86_64.tar.gz"
-      sha256 "2f36a18e43368b98cc85dff6933c0f2d08dbe960ade2f1287406d6a8e553ce56"
+      url "https://github.com/soryu-co/makima/releases/download/v0.12.0/makima-v0.12.0-macos-x86_64.tar.gz"
+      sha256 "dc175046bee43daad257a972e41b28ed542c66b9aa48f7ab10faa1c492f0aaf2"
     end
   end
 
   on_linux do
     on_intel do
-      url "https://github.com/soryu-co/makima/releases/download/v0.11.0/makima-v0.11.0-linux-x86_64.tar.gz"
-      sha256 "c932435b3241281cedcd9cfbf45405f14a4333eecb6d6cf99ff0146e608a1947"
+      url "https://github.com/soryu-co/makima/releases/download/v0.12.0/makima-v0.12.0-linux-x86_64.tar.gz"
+      sha256 "d522e89e9f5fed2d55b8c00df7b2a7026d2bc90ee074e126104c8691f380f1e3"
     end
   end
 
